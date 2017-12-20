@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sy.dao.MyFriendMapper">
+	<resultMap id="BaseResultMap" type="sy.model.MyFriend">
+		<result column="createdate" property="createdate" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="hobby" property="hobby" jdbcType="VARCHAR" />
+		<result column="school" property="school" jdbcType="VARCHAR" />
+		<result column="education_background" property="education_background" jdbcType="VARCHAR" />
+		<result column="major" property="major" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="company" property="company" jdbcType="VARCHAR" />
+		<result column="relation" property="relation" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">	
+		createdate,name,sex,birthday,telephone,qq,hobby,school,education_background,major,address,company,relation
+	</sql>
+	<select id="selectBySql" resultMap="BaseResultMap" parameterType="sy.model.MyFriend">
+		select
+		<include refid="Base_Column_List" />
+		from friend
+		where 1=1
+		<!-- 引号中取值用${},非引号内取值#{} -->
+		<if test="createdate != null">
+			and createdate like '%${createdate}%'
+		</if>
+		<if test="name != null">
+			and name like '%${name}%'
+		</if>
+		<if test="sex != null">
+			and sex like '%${sex}'
+		</if>
+		<if test="birthday != null">
+			and birthday like '%${birthday}%'
+		</if>
+		<if test="telephone != null">
+			and telephone like '%${telephone}%'
+		</if>
+		<if test="qq != null">
+			and qq like '%${qq}%'
+		</if>
+		<if test="hobby != null">
+			and hobby like '%${hobby}%'
+		</if>
+		<if test="school != null">
+			and school like '%${school}%'
+		</if>
+		<if test="education_background != null">
+			and education_background like '%${education_background}%'
+		</if>
+		<if test="major != null">
+			and major like '%${major}%'
+		</if>
+		<if test="address != null">
+			and address like '%${address}%'
+		</if>
+		<if test="company != null">
+			and company like '%${company}%'
+		</if>
+		<if test="relation != null">
+			and relation like '%${relation}%'
+		</if>
+		order by createdate
+	</select>
+
+	<insert id="insert" parameterType="sy.model.MyFriend">
+		insert into friend
+		(
+			name,sex,birthday,telephone,qq,hobby,school,education_background,major,address,company,relation
+		)
+		values 
+		(
+			#{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR},
+			#{telephone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR},
+			#{school,jdbcType=VARCHAR},#{education_background,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR},
+			#{address,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR},#{relation,jdbcType=VARCHAR}
+		)
+	</insert>
+	<!--删除数据-->
+	<delete id="deleteByPrimaryKey" parameterType="sy.model.MyFriend">
+		DELETE friend where name=#{name,jdbcType=VARCHAR}
+	</delete>
+
+	<!--修改数据-->
+	<update id="updateByPrimaryKey" parameterType="sy.model.MyFriend">
+		update friend
+		set name=#{name,jdbcType=VARCHAR},
+		sex=#{sex,jdbcType=VARCHAR},
+		birthday=#{birthday,jdbcType=VARCHAR},
+		telephone=#{telephone,jdbcType=VARCHAR},
+		qq=#{qq,jdbcType=VARCHAR},
+		hobby= #{hobby,jdbcType=VARCHAR},
+		school=#{school,jdbcType=VARCHAR},
+		education_background=#{education_background,jdbcType=VARCHAR},
+		major=#{major,jdbcType=VARCHAR},
+		address=#{address,jdbcType=VARCHAR},
+		company=#{company,jdbcType=VARCHAR},
+		relation=#{relation,jdbcType=VARCHAR}
+		where qq=#{qq,jdbcType=VARCHAR}
+	</update>
+	<!--性别分析图-->
+	<select id="sexAnalysisPie" resultMap="java.util.HashMap">
+		select count(*) as sexNumber,sex from friend group by  sex
+	</select>
+</mapper>
