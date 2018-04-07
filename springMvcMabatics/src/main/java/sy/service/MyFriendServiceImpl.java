@@ -15,6 +15,8 @@ public class MyFriendServiceImpl implements MyFriendI{
 	
 	private MyFriendMapper myFriendMapper;
 
+
+	@Autowired
 	public void setMyFriendMapper(MyFriendMapper myFriendMapper){
 		this.myFriendMapper=myFriendMapper;
 	}

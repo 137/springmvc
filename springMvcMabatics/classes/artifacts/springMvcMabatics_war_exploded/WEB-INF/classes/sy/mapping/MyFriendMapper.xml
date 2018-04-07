@@ -32,7 +32,7 @@
 		<result column="name" property="name" jdbcType="VARCHAR" />
 	</resultMap>
 
-	<sql id="Base_Column_List">	
+	<sql id="Base_Column_List">
 		createdate,name,sex,birthday,telephone,qq,hobby,school,education_background,major,address,company,relation
 	</sql>
 	<select id="selectBySql" resultMap="BaseResultMap" parameterType="sy.model.MyFriend">
@@ -86,14 +86,14 @@
 	<insert id="insert" parameterType="sy.model.MyFriend">
 		insert into friend
 		(
-			name,sex,birthday,telephone,qq,hobby,school,education_background,major,address,company,relation
+		name,sex,birthday,telephone,qq,hobby,school,education_background,major,address,company,relation
 		)
-		values 
+		values
 		(
-			#{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR},
-			#{telephone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR},
-			#{school,jdbcType=VARCHAR},#{education_background,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR},
-			#{address,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR},#{relation,jdbcType=VARCHAR}
+		#{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR},
+		#{telephone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR},
+		#{school,jdbcType=VARCHAR},#{education_background,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR},#{relation,jdbcType=VARCHAR}
 		)
 	</insert>
 	<!--删除数据-->
@@ -120,19 +120,19 @@
 	</update>
 	<!--性别分析图-->
 	<select id="sexAnalysisPie" resultMap="SexResultMap">
-			select count(*) as sexNumber,sex from friend  group by  sex
+		select count(*) as sexNumber,sex from friend  group by  sex
 	</select>
 	<!--年龄段分析-->
 	<select id="ageAnalysisPie" resultMap="ageResultMap">
 		select count(*) as birNumber,decode(substr(birthday,0,2),'新历',substr(birthday,3,4),substr(birthday,0,4)) as birthday from friend
- 		group by decode(substr(birthday,0,2),'新历',substr(birthday,3,4),substr(birthday,0,4))
+		group by decode(substr(birthday,0,2),'新历',substr(birthday,3,4),substr(birthday,0,4))
 	</select>
 	<!--生日分析柱状图-->
 	<select id="birAnalysisBar" resultMap="birResultMap">
 		select name,nvl(substr(birthday,6,2)||substr(birthday,9,2),0) as birthday
 		from
 		(
-		  select name,substr(birthday,instr(birthday,'19'),10) as birthday from friend  where regexp_like (birthday, '^[新历]{1}|[[:digit:]]+$')--查询出有出生日期的好友,并将新历截取掉
+		select name,substr(birthday,instr(birthday,'19'),10) as birthday from friend  where regexp_like (birthday, '^[新历]{1}|[[:digit:]]+$')--查询出有出生日期的好友,并将新历截取掉
 		)order by birthday
-</select>
+	</select>
 </mapper>

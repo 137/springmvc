@@ -41,35 +41,35 @@ public class MyFriendController {
         this.myFriendService = myFriendService;
     }
 
-//    /**
-//     * 初始化
-//     *
-//     * @param id
-//     * @param request
-//     * @return
-//     */
-//    @ResponseBody
-//    @RequestMapping(value = "/showMyFriend", produces = "application/json;charset='utf-8'")//解决乱码
-//    public String showUser(@RequestParam(required = false, defaultValue = "12301") String id, HttpServletRequest request) {
-//        MyFriend m = new MyFriend();
-//        LOGGER.info(JSON.toJSONString(myFriendService.getMyFriendBySql(m)));
-//        return JSON.toJSONString(myFriendService.getMyFriendBySql(m));
-//    }
+    /**
+     * 初始化
+     *
+     * @param id
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/showMyFriend", produces = "application/json;charset='UTF-8'")//解决乱码
+    public String showUser(@RequestParam(required = false, defaultValue = "12301") String id, HttpServletRequest request) {
+        MyFriend m = new MyFriend();
+        LOGGER.info(JSON.toJSONString(myFriendService.getMyFriendBySql(m)));
+        return JSON.toJSONString(myFriendService.getMyFriendBySql(m));
+    }
 
     //控制跳转到修改页面
-    @RequestMapping(value = "/toShowMyFriendPage", produces = "application/json;charset='utf-8'")//解决乱码
+    @RequestMapping(value = "/toShowMyFriendPage", produces = "application/json;charset='UTF-8'")//解决乱码
     public String toShowMyFriendPage(){
         return "redirect:/showMyFriend.jsp";//重定向不经过springmvc的过滤
     }
 
     //跳转到好友性别分析页面
-    @RequestMapping(value = "/toFriendPiePage", produces = "application/json;charset='utf-8'")//解决乱码
+    @RequestMapping(value = "/toFriendPiePage", produces = "application/json;charset='UTF-8'")//解决乱码
     public String toFriendPiePage(){
         return "/views/friend/pieChartFriend";
     }
 
     //跳转到好友生日分析页面
-    @RequestMapping(value = "/toBirBarPage", produces = "application/json;charset='utf-8'")//解决乱码
+    @RequestMapping(value = "/toBirBarPage", produces = "application/json;charset='UTF-8'")//解决乱码
     public String toBirBarPage(){
         return "/views/friend/birBarChartFriend";
     }
@@ -83,7 +83,7 @@ public class MyFriendController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/selectMyFriend", produces = "application/json;charset='utf-8'")
+    @RequestMapping(value = "/selectMyFriend", produces = "application/json;charset='UTF-8'")
     public String selectMyFriend(@RequestParam(required = false) String columnName
             , @RequestParam(required = false) String columnValue, HttpServletRequest request, ModelMap model) {
         ArrayList<MyFriend> list = new ArrayList<MyFriend>();
