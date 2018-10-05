@@ -7,12 +7,11 @@
           <element id="module-output" name="springMvcMabatics" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:3.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:3.2.0.RELEASE" />
-          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:3.2.0.RELEASE" />
@@ -22,15 +21,26 @@
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.1.1" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.1.1" />
           <element id="library" level="project" name="Maven: com.alibaba:druid:0.2.9" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.7.1" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.6.11" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.11" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.11" />
           <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.2.2" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.1.26" />
-          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="Maven: redis.clients:jedis:2.9.0" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-pool2:2.4.2" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aspects:3.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:3.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.11" />
+          <element id="library" level="project" name="Maven: cglib:cglib:2.1_3" />
+          <element id="library" level="project" name="Maven: asm:asm:1.5.3" />
+          <element id="library" level="project" name="Maven: com.github.miemiedev:mybatis-paginator:1.2.17" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.2" />
         </element>
       </element>
-      <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+      <element id="library" level="project" name="jedis-2.1.0-sources" />
       <element id="javaee-facet-resources" facet="springMvcMabatics/web/Web" />
     </root>
   </artifact>

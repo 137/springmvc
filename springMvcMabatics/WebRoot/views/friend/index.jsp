@@ -36,6 +36,7 @@
     $.ajax({
       type: "post",
       url: "/MyFriendController/selectMyFriend.do",
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
       dataType: "json",
       error: function (XMLHttpRequest, textStatus, errorThrown) {
         alert(XMLHttpRequest.status);
@@ -76,6 +77,7 @@
       $.ajax({
         type: "post",
         url: "/MyFriendController/selectMyFriend.do",
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         data: {"columnName": $("#columnName").val(), "columnValue": $("#columnValue").val()},
         success: function (data) {
 

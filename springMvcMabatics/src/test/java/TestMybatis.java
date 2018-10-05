@@ -14,7 +14,7 @@ import sy.service.UserServiceI;
 
 import com.alibaba.fastjson.JSON;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mybatis.xml" })
 public class TestMybatis {
 
@@ -53,5 +53,21 @@ public class TestMybatis {
 	public void test4() {
 		List<User> l = userService.getAll3();
 		logger.info(JSON.toJSONStringWithDateFormat(l, "yyyy-MM-dd HH:mm:ss"));
+	}
+
+	@Test
+	public void testTimu(){
+		int i=2;
+		switch (i){
+			case 1:i=0;
+			case 2:i+=2;
+				System.out.printf("ok,"+i);
+			case 3:
+				System.out.printf("ok,"+i);
+			case 4:i-=2;
+				System.out.printf("ok,"+i);
+			default:
+				break;
+		}
 	}
 }
