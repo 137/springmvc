@@ -12,7 +12,8 @@ public class LogRecord {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private String createTime;
+
 
     /**
      * 操作名称
@@ -30,11 +31,11 @@ public class LogRecord {
      */
     private String operateObj;
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

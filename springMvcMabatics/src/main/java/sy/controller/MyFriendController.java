@@ -179,6 +179,10 @@ public class MyFriendController {
         friend.setQq(qq);
         LOGGER.info(friend);
         try{
+            friend=myFriendService.getMyFriendBySql(friend).get(0);
+            if(friend==null){
+                throw new RuntimeException("要删除的对象不存在");
+            }
             result=myFriendService.deleteMyfriend(friend);
         }catch (Exception ex){
             ex.printStackTrace();

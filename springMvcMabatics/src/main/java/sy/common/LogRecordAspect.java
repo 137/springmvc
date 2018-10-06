@@ -1,14 +1,11 @@
 package sy.common;
-
-import com.alibaba.druid.util.StringUtils;
-import com.sun.javafx.collections.MappingChange;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import sy.model.LogRecord;
 import sy.model.MyFriend;
 import sy.service.LogRecordService;
+import sy.util.DateUtil;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -49,8 +46,7 @@ public class LogRecordAspect {
         logger.info("拦截到的类："+joinPoint.toString());
         String methodName = joinPoint.getSignature().getName(); //获取方法名称
         //拦截其请求参数
-        try {
-            if(recordMethods.contains(methodName)){
+        if(recordMethods.contains(methodName)){
                 logger.info("拦截到对我的朋友的操作，需要记录日志，记录开始...");
                 logger.info("正在执行："+methodName+"方法...");
                 Object[] args = joinPoint.getArgs();
@@ -59,7 +55,7 @@ public class LogRecordAspect {
 
                 //日志表数据封装
                 LogRecord logRecord=new LogRecord();
-                logRecord.setCreateTime(new Date());
+                logRecord.setCreateTime(DateUtil.formatToSysDate(new Date()));
                 logRecord.setOperateName(methodName);
                 logRecord.setOperateObj(myFriend.toString());
                 logRecord.setOperateDes("正在完成："+methodName+"方法");
@@ -67,10 +63,6 @@ public class LogRecordAspect {
                 logger.info("插入日志表成功："+myFriend);
 
             }
-        } catch (Exception e) {
-            logger.warning("插入日志表失败");
-        }
-        return;
 
     }
 
