@@ -1,51 +1,51 @@
 --------------------------------------------------------
---  文件已创建 - 星期五-十月-05-2018
+--  文件已创建 - 星期六-十月-06-2018   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table FRIEND
 --------------------------------------------------------
 
-  CREATE TABLE "MYINFO"."FRIEND"
-   (	"CREATEDATE" VARCHAR2(20 BYTE) DEFAULT to_char(sysdate,'yyyy-mm-dd'),
-	"NAME" VARCHAR2(20 BYTE),
-	"SEX" VARCHAR2(2 BYTE),
-	"BIRTHDAY" VARCHAR2(20 BYTE) DEFAULT '未知',
-	"TELEPHONE" VARCHAR2(20 BYTE) DEFAULT '未知',
-	"QQ" VARCHAR2(20 BYTE) DEFAULT '未知',
-	"HOBBY" VARCHAR2(100 BYTE) DEFAULT '未知',
-	"SCHOOL" VARCHAR2(100 BYTE) DEFAULT '未知',
-	"EDUCATION_BACKGROUND" VARCHAR2(20 BYTE) DEFAULT '未知',
-	"MAJOR" VARCHAR2(30 BYTE) DEFAULT '未知',
-	"ADDRESS" VARCHAR2(100 BYTE) DEFAULT '未知',
-	"COMPANY" VARCHAR2(40 BYTE) DEFAULT '未知',
+  CREATE TABLE "MYINFO"."FRIEND" 
+   (	"CREATEDATE" VARCHAR2(20 BYTE) DEFAULT to_char(sysdate,'yyyy-mm-dd'), 
+	"NAME" VARCHAR2(20 BYTE), 
+	"SEX" VARCHAR2(2 BYTE), 
+	"BIRTHDAY" VARCHAR2(20 BYTE) DEFAULT '未知', 
+	"TELEPHONE" VARCHAR2(20 BYTE) DEFAULT '未知', 
+	"QQ" VARCHAR2(20 BYTE) DEFAULT '未知', 
+	"HOBBY" VARCHAR2(100 BYTE) DEFAULT '未知', 
+	"SCHOOL" VARCHAR2(100 BYTE) DEFAULT '未知', 
+	"EDUCATION_BACKGROUND" VARCHAR2(20 BYTE) DEFAULT '未知', 
+	"MAJOR" VARCHAR2(30 BYTE) DEFAULT '未知', 
+	"ADDRESS" VARCHAR2(100 BYTE) DEFAULT '未知', 
+	"COMPANY" VARCHAR2(40 BYTE) DEFAULT '未知', 
 	"RELATION" VARCHAR2(20 BYTE) DEFAULT '无'
-   ) SEGMENT CREATION IMMEDIATE
+   ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
-
+ 
 
    COMMENT ON COLUMN "MYINFO"."FRIEND"."CREATEDATE" IS '创建时间';
-
+ 
    COMMENT ON COLUMN "MYINFO"."FRIEND"."HOBBY" IS '爱好';
-
+ 
    COMMENT ON COLUMN "MYINFO"."FRIEND"."SCHOOL" IS '学校';
-
+ 
    COMMENT ON COLUMN "MYINFO"."FRIEND"."EDUCATION_BACKGROUND" IS '教育背景';
-
+ 
    COMMENT ON COLUMN "MYINFO"."FRIEND"."MAJOR" IS '专业';
-
+ 
    COMMENT ON COLUMN "MYINFO"."FRIEND"."ADDRESS" IS '地址';
-
+ 
    COMMENT ON COLUMN "MYINFO"."FRIEND"."COMPANY" IS '公司';
-
+ 
    COMMENT ON COLUMN "MYINFO"."FRIEND"."RELATION" IS '关系';
-
+ 
    COMMENT ON TABLE "MYINFO"."FRIEND"  IS 'select *
 from friend
 where birthday!                                =''未知''
-and
+and 
 substr(
         birthday,
         decode(substr(birthday,0,2),''新历'',3,0),
@@ -66,6 +66,29 @@ insert into friend
 select
 t2.createdate,t2.name,t2.sex,t2.birthday,t2.telephone,t2.qq,t2.hobby,t2.school,t2.education_background,t2.major,t2.address,t2.company,t2.relation
 from person t2 where t2.name not in(select t1.name from friend t1);';
+--------------------------------------------------------
+--  DDL for Table LOG_RECORD
+--------------------------------------------------------
+
+  CREATE TABLE "MYINFO"."LOG_RECORD" 
+   (	"CREATE_TIME" VARCHAR2(20 BYTE) DEFAULT to_char(sysdate,'yyyy-MM-dd hh:mm:ss'), 
+	"OPERATE_NAME" VARCHAR2(64 BYTE), 
+	"OPERATE_DES" VARCHAR2(250 BYTE), 
+	"OPERATE_OBJ" VARCHAR2(1024 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+ 
+
+   COMMENT ON COLUMN "MYINFO"."LOG_RECORD"."CREATE_TIME" IS '创建时间';
+ 
+   COMMENT ON COLUMN "MYINFO"."LOG_RECORD"."OPERATE_NAME" IS '操作名称';
+ 
+   COMMENT ON COLUMN "MYINFO"."LOG_RECORD"."OPERATE_DES" IS '操作描述';
+ 
+   COMMENT ON COLUMN "MYINFO"."LOG_RECORD"."OPERATE_OBJ" IS '操作对象';
 REM INSERTING into MYINFO.FRIEND
 SET DEFINE OFF;
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:05:17','刘婷','女','未知','未知','2501990535','未知','福建师范大学旗山校区','本一','软件工程','福建省高新技术创业园','华博','大学学妹');
@@ -79,7 +102,6 @@ Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOO
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2015:12:20','胡婷','女','未知','15084356663','741961020','未知','福建师范大学旗山校区','本1','材料科学与工程（化材）','重庆','未知','大学学妹');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2015:12:20','邓小淑','女','未知','未知','991523548','未知','福建师范大学旗山校区','本1','经济学院','重庆','未知','大学学妹');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:02:05','高飞','男','未知','18396189097','1432220483','写代码','福建师范大学旗山校区','本1','软件工程','未知','未知','同学');
-Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:07:01','王亚虾','女','未知','15806019412','1909484488','未知','福建师范大学','本1','未知','未知','福建新大陆支付公司','新大陆支付-同事');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2015:12:16','王怡','女','1994-01-17','未知','844252316','目前不明确','福州大学-至诚学院','本2','未知','福建','用友','无');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2015:12:16','小笨蛋','女','1995-02-11','17805964177','1422819852','喜欢吃紫菜蛋汤','福建师范大学仓山校区','本1','文学院','重庆涪陵','未知','女朋友');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2015:12:16','张燕红','女','1991-10-14 4:40','18359196171','892276612','貌似对什么都有兴趣,对什么都无所谓','福建师范大学旗山校区','本1','法学院','福建泉州惠安','未知','大学同学');
@@ -108,7 +130,6 @@ Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOO
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2015:12:27','宋亮亮','男','未知','15705957065','210989252','玩游戏（lol，dnf）','福建师范大学旗山校区','本1','软件学院软工程','未知','未知','大学同学-3班');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2015:12:27','黄慧玲','女','未知','未知','15345049998','未知','未知','未知','未知','未知','用友福州分公司','工作同事');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:01:18','谢小东','男','未知','13960994824','124137478','zb','福建师范大学旗山校区','本1','应用科技学院','未知','福建高速信息科技有限公司','高速-同事');
-Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:05:04','刘光雄','男','未知','13599098876','57317367','未知','未知','未知','未知','未知','福建高速信息科技有限公司','高速-经理');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:05:04','陈永燥','男','未知','18046066032','513528050','未知','福州大学','研究生','未知','未知','福建高速信息科技有限公司','高速-同事');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:07:04','杨思慧','女','未知','未知','282570836','郁郁寡欢,殊不知,市场推广','福建师范大学旗山校区','本1','市场营销','福建漳州','未知','大学同学');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:06:15','向春梅','女','未知','未知','1163493668','未知','西南石油大学','本1','会计','四川广安','未知','高中同学');
@@ -118,15 +139,15 @@ Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOO
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:09:13','徐艳','女','未知','15305018984','895036082','未知','福建工程学院','本2','未知','福建','顶点软件股份有限公司,离职','无');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:10:17','张超红','男','1994-10-15','18060478928','251305396','佛学和科技1','福建师范大学','本科','软件工程','四川','顶点软件','我');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:11:23','秦金融','女','未知','未知','1713152830','各种生气,而且还不知道为什么生气,还喜欢删人','未知','本科','计算机','四川武胜','未知','高中同学');
-Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2018-09-06','林丽梅','女','1996-04-03 23:00','13110530380','未知','喜欢吃百香果','福建师范大学-仓山校区','本科','英语师范','四川-成都','未知','学妹');
+Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2018-09-06','林丽梅','女','1996-04-03 23:00','13110530380','4444444444443333','喜欢吃百香果   喜欢聊天','福建师范大学-仓山校区','本科','英语师范','四川-成都','未知','学妹');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017:02:14','啊飒飒','男','未知','12132324543','1213234543545','？涨12','未知','未知','未知','未知','未知','未知');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017:02:13','林容','女','1993','未知','756857471','fadai','福州大学','本科','未知','福建-宁德','顶点软件股份有限公司','同事');
-Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2018-01-22','冉娟','女','1994-01-16 12:00','18523200691','909090909090','未知','未知','未知','未知','未知','未知','杨银舍友');
+Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2018-01-22','冉娟','女','1994-01-16 12:00','18523200691','909090909090','本地','未知','未知','未知','未知','未知','杨银舍友');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:11:14','徐心雨','女','1997-09-03 凌晨4点','15279208038','1824897680',null,'南昌师范高等专科学校','专科','英语','江西湖口','未知','网友');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017:08:08','周闻','女','新历1993-06-07 18点','18020740235','810161582','未知','福建师范大学','本科','软件工程','浙江绍兴人现居厦门（21）','未知','未知');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017:09:03','周闻家虎爷猫','雌','新历2016-08-27','未知','未知','未知','未知','未知','喵喵','厦门','未知','喵喵');
-Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017:10:11','周颖玮','女','1995-06-10 8:45','15800864997','1250995998','唱歌','未知','本科','未知','襄阳-宜城','北京汉克时代杭州分公司','男女朋友');
-Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017-11-11','杨银','女','1994','15723230575','136537769','未知','中国石油大学（华东）','本1','计算机','重庆-两江新区','未知','高中同学');
+Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017:10:11','周颖玮','女','1995-06-10 8:45','15800864997','1250995998','唱歌，玩游戏；跟我啪啪啪啊','未知','本科','未知','襄阳-宜城','北京汉克时代杭州分公司','男女朋友');
+Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017-11-11','杨银','女','1994','15723230575','136537769','看综艺节目','中国石油大学（华东）','本1','计算机','重庆-两江新区','未知','高中同学');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:11:23','陈洋','男','1994-10-15','未知','774931273','调戏妹子','未知','本科','未知','四川武胜石盘','未知','初中同学');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:11:23','郭明耀','男','未知','18668066820','857481315','各种爱好,,,实在不知','福建师范大学旗山校区','本1','软件工程','福建','未知','大学同学');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2016:11:23','刘文君','女','未知','15282352882','734459929','未知','未知','专科','幼师','四川武胜','未知','堂姐');
@@ -135,12 +156,24 @@ Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOO
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017:11:01','谭秀珍','女','2017-10-26忌日','未知','909009090','佛学','未知','未知','未知','四川','未知','奶奶');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017-11-26','粟仕铭','男','2017','未知','粟思铭','未知','未知','未知','未知','四川省岳池县平摊镇','未知','侄子');
 Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2017-11-27','张兰岚','女','1994-03-06 02:00','18650086448','1061269734','未知','福州大学','本1','未知','未知','未知','男女');
+Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2018-10-06','王鸿程','女','未知','13738152694','13738152694','追剧','未知','未知','未知','杭州','北京汉克时代','前同事');
+Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOOL,EDUCATION_BACKGROUND,MAJOR,ADDRESS,COMPANY,RELATION) values ('2018-10-06','同青波','男','未知','13175023356','微信号：bobo905323','滑轮、看书','未知','本1','计算机','陕西','杭州海康威视数字技术股份有限公司','现同事');
+REM INSERTING into MYINFO.LOG_RECORD
+SET DEFINE OFF;
+Insert into MYINFO.LOG_RECORD (CREATE_TIME,OPERATE_NAME,OPERATE_DES,OPERATE_OBJ) values ('2018-10-06 06:08:46','updateByPrimaryKey','正在完成：updateByPrimaryKey方法','MyFriend{createdate=''null'', name=''林丽梅'', sex=''女'', birthday=''1997-04-03 23:00'', telephone=''13110530380'', qq=''4444444444443333'', hobby=''喜欢吃百香果   喜欢聊天'', school=''福建师范大学-仓山校区'', education_background=''本科'', major=''英语师范'', address=''四川-成都'', company=''未知'', relation=''学妹''}');
+Insert into MYINFO.LOG_RECORD (CREATE_TIME,OPERATE_NAME,OPERATE_DES,OPERATE_OBJ) values ('2018-10-06 06:10:21','updateByPrimaryKey','正在完成：updateByPrimaryKey方法','MyFriend{createdate=''null'', name=''林丽梅'', sex=''女'', birthday=''1996-04-03 23:00'', telephone=''13110530380'', qq=''4444444444443333'', hobby=''喜欢吃百香果   喜欢聊天'', school=''福建师范大学-仓山校区'', education_background=''本科'', major=''英语师范'', address=''四川-成都'', company=''未知'', relation=''学妹''}');
+Insert into MYINFO.LOG_RECORD (CREATE_TIME,OPERATE_NAME,OPERATE_DES,OPERATE_OBJ) values ('2018-10-06 02:33:40','updateByPrimaryKey','正在完成：updateByPrimaryKey方法','MyFriend{createdate=''null'', name=''林丽梅'', sex=''女'', birthday=''1996-04-03 23:00'', telephone=''13110530380'', qq=''4444444444443333'', hobby=''喜欢吃百香果   喜欢聊天'', school=''福建师范大学-仓山校区'', education_background=''本科'', major=''英语师范'', address=''四川-成都'', company=''未知'', relation=''学妹''}');
+Insert into MYINFO.LOG_RECORD (CREATE_TIME,OPERATE_NAME,OPERATE_DES,OPERATE_OBJ) values ('2018-10-06 02:34:15','updateByPrimaryKey','正在完成：updateByPrimaryKey方法','MyFriend{createdate=''null'', name=''杨银'', sex=''女'', birthday=''1994'', telephone=''15723230575'', qq=''136537769'', hobby=''看综艺节目'', school=''中国石油大学（华东）'', education_background=''本1'', major=''计算机'', address=''重庆-两江新区'', company=''未知'', relation=''高中同学''}');
+Insert into MYINFO.LOG_RECORD (CREATE_TIME,OPERATE_NAME,OPERATE_DES,OPERATE_OBJ) values ('2018-10-06 05:55:00','insertMyFriend','正在完成：insertMyFriend方法','MyFriend{createdate=''null'', name=''王鸿程'', sex=''女'', birthday=''未知'', telephone=''13738152694'', qq=''13738152694'', hobby=''追剧'', school=''未知'', education_background=''未知'', major=''未知'', address=''杭州'', company=''北京汉克时代'', relation=''前同事''}');
+Insert into MYINFO.LOG_RECORD (CREATE_TIME,OPERATE_NAME,OPERATE_DES,OPERATE_OBJ) values ('2018-10-06 05:55:33','deleteMyfriend','正在完成：deleteMyfriend方法','MyFriend{createdate=''null'', name=''null'', sex=''null'', birthday=''null'', telephone=''null'', qq=''57317367'', hobby=''null'', school=''null'', education_background=''null'', major=''null'', address=''null'', company=''null'', relation=''null''}');
+Insert into MYINFO.LOG_RECORD (CREATE_TIME,OPERATE_NAME,OPERATE_DES,OPERATE_OBJ) values ('2018-10-06 05:58:54','deleteMyfriend','正在完成：deleteMyfriend方法','MyFriend{createdate=''2016:07:01'', name=''王亚虾'', sex=''女'', birthday=''未知'', telephone=''15806019412'', qq=''1909484488'', hobby=''未知'', school=''福建师范大学'', education_background=''本1'', major=''未知'', address=''未知'', company=''福建新大陆支付公司'', relation=''新大陆支付-同事''}');
+Insert into MYINFO.LOG_RECORD (CREATE_TIME,OPERATE_NAME,OPERATE_DES,OPERATE_OBJ) values ('2018-10-06 06:02:52','insertMyFriend','正在完成：insertMyFriend方法','MyFriend{createdate=''null'', name=''同青波'', sex=''男'', birthday=''未知'', telephone=''13175023356'', qq=''微信号：bobo905323'', hobby=''滑轮、看书'', school=''未知'', education_background=''本1'', major=''计算机'', address=''陕西'', company=''杭州海康威视数字技术股份有限公司'', relation=''现同事''}');
 --------------------------------------------------------
 --  DDL for Index FRIEND_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "MYINFO"."FRIEND_PK" ON "MYINFO"."FRIEND" ("NAME")
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS
+  CREATE UNIQUE INDEX "MYINFO"."FRIEND_PK" ON "MYINFO"."FRIEND" ("NAME") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
@@ -148,8 +181,8 @@ Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOO
 --  DDL for Index FRIEND_PK1
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "MYINFO"."FRIEND_PK1" ON "MYINFO"."FRIEND" ("QQ", "TELEPHONE")
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS
+  CREATE UNIQUE INDEX "MYINFO"."FRIEND_PK1" ON "MYINFO"."FRIEND" ("QQ", "TELEPHONE") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
@@ -158,17 +191,26 @@ Insert into MYINFO.FRIEND (CREATEDATE,NAME,SEX,BIRTHDAY,TELEPHONE,QQ,HOBBY,SCHOO
 --------------------------------------------------------
 
   ALTER TABLE "MYINFO"."FRIEND" ADD CONSTRAINT "FRIEND_PK" PRIMARY KEY ("QQ", "TELEPHONE")
-  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
-
+ 
   ALTER TABLE "MYINFO"."FRIEND" MODIFY ("NAME" NOT NULL ENABLE);
-
+ 
   ALTER TABLE "MYINFO"."FRIEND" MODIFY ("COMPANY" NOT NULL ENABLE);
-
+ 
   ALTER TABLE "MYINFO"."FRIEND" MODIFY ("CREATEDATE" NOT NULL ENABLE);
-
+ 
   ALTER TABLE "MYINFO"."FRIEND" MODIFY ("QQ" NOT NULL ENABLE);
-
+ 
   ALTER TABLE "MYINFO"."FRIEND" MODIFY ("TELEPHONE" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table LOG_RECORD
+--------------------------------------------------------
+
+  ALTER TABLE "MYINFO"."LOG_RECORD" MODIFY ("CREATE_TIME" NOT NULL ENABLE);
+ 
+  ALTER TABLE "MYINFO"."LOG_RECORD" MODIFY ("OPERATE_NAME" NOT NULL ENABLE);
+ 
+  ALTER TABLE "MYINFO"."LOG_RECORD" MODIFY ("OPERATE_OBJ" NOT NULL ENABLE);
