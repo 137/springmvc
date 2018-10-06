@@ -7,7 +7,7 @@
        <bean id="registerService" class="sy.service.RegisterServiceImpl"></bean>
 
        <!-- 2切面类，含有通知 -->
-       <bean id="myAspect" class="sy.util.LogAspect"></bean>
+       <bean id="logAspect" class="sy.util.LogAspect"></bean>
 
 
        <!-- 3代理类
@@ -16,11 +16,11 @@
                interceptorNames 用于确定通知实现类，需要提供的bean名称
                target 用于确定代理类bean名称
        -->
-       <bean id="personServiceProxyId" class="org.springframework.aop.framework.ProxyFactoryBean">
+       <bean id="logServiceProxyId" class="org.springframework.aop.framework.ProxyFactoryBean">
               <!-- 3.1 确定接口 -->
               <property name="proxyInterfaces" value="sy.service.RegisterService"></property>
               <!-- 3.2 确定通知 -->
-              <property name="interceptorNames" value="myAspect"></property>
+              <property name="interceptorNames" value="logAspect"></property>
               <!-- 3.3 确定目标类-->
               <property name="target" ref="registerService"></property>
               <!-- 3.4 设置true，强制使用 cglib -->

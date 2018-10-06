@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import sy.dao.MyFriendMapper;
 import sy.model.MyFriend;
 @Service("myFriendService")
-public class MyFriendServiceImpl implements MyFriendI{
+public class MyFriendServiceImpl implements MyFriendI,RegisterService{
 
 	private MyFriend myFriend=new MyFriend();
 	

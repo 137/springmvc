@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sy.dao.LogRecordMapper">
+	<resultMap id="BaseResultMap" type="sy.model.LogRecord">
+		<result column="create_time" property="createTime" jdbcType="DATE" />
+		<result column="operate_name" property="operateName" jdbcType="VARCHAR" />
+		<result column="operate_des" property="operateDes" jdbcType="VARCHAR" />
+		<result column="operate_obj" property="operateObj" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		create_time,operate_name,operate_des,operate_obj
+	</sql>
+	<select id="selectBySql" resultMap="BaseResultMap" parameterType="sy.model.LogRecord">
+		select
+		<include refid="Base_Column_List" />
+		from log_record
+		where 1=1
+		<!-- 引号中取值用${},非引号内取值#{} -->
+		<if test="create_time != null">
+			and create_time like '%${createTime}%'
+		</if>
+		<if test="operate_name != null">
+			and operate_name like '%${operateName}%'
+		</if>
+		<if test="operate_des != null">
+			and operate_des like '%${operateDes}'
+		</if>
+		<if test="operate_obj != null">
+			and operate_obj like '%${operateObj}%'
+		</if>
+
+		order by create_time DESC
+	</select>
+
+	<insert id="insert" parameterType="sy.model.LogRecord">
+		insert into log_record
+		(
+			create_time,operate_name,operate_des,operate_obj
+		)
+		values
+		(
+			#{createTime,jdbcType=VARCHAR}, #{operateName,jdbcType=VARCHAR}, #{operateDes,jdbcType=VARCHAR},
+			#{operateObj,jdbcType=VARCHAR}
+		)
+	</insert>
+</mapper>

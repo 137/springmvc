@@ -11,7 +11,7 @@ public class testAOP {
     @Test
     public  void test() {
         ApplicationContext act = new ClassPathXmlApplicationContext("SpringAop.xml");
-        RegisterServiceImpl e = (RegisterServiceImpl) act.getBean("personServiceProxyId");
+        RegisterServiceImpl e = (RegisterServiceImpl) act.getBean("logServiceProxyId");
         e.save("zhang","123");
     }
 }
