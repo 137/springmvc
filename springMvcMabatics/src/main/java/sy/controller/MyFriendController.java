@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +13,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +26,7 @@ import com.alibaba.fastjson.JSON;
 import sy.model.MyFriend;
 import sy.service.MyFriendI;
 import sy.service.MyFriendServiceImpl;
+import sy.util.ThreadLocalLog;
 import sy.util.controllerDeal;
 
 @Controller
@@ -141,6 +146,13 @@ public class MyFriendController {
                                @RequestParam(required = false) String address, @RequestParam(required = false) String company, @RequestParam(required = false) String relation
     ) {
         String result = "";
+        /*******************************************************************
+         * 日志记录开始
+         */
+        ThreadLocalLog.t1.set("添加"+name+",qq为"+qq+"的信息");
+        /**
+         * 日志记录结束
+         ********************************************************************/
 
         MyFriend friend = new MyFriend();
         friend.setName(name);
@@ -173,6 +185,7 @@ public class MyFriendController {
     @ResponseBody
     @RequestMapping(value = "/deleteFriend", produces = "application/json;charset=utf-8")
     public String deleteFriend(@RequestParam(required = false) String qq) throws Exception{
+
         String result = "";
         LOGGER.info(qq+"\n");
         MyFriend friend=new MyFriend();
@@ -180,6 +193,14 @@ public class MyFriendController {
         LOGGER.info(friend);
         try{
             friend=myFriendService.getMyFriendBySql(friend).get(0);
+
+            /*******************************************************************
+             * 日志记录开始
+             */
+            ThreadLocalLog.t1.set("删除"+friend.getName()+",qq为"+qq+"的信息");
+            /**
+             * 日志记录结束
+             ********************************************************************/
             if(friend==null){
                 throw new RuntimeException("要删除的对象不存在");
             }
@@ -234,6 +255,7 @@ public class MyFriendController {
 
         String result = "";
 
+
         MyFriend friend = new MyFriend();
         friend.setName(name);
         friend.setSex(sex);
@@ -249,9 +271,40 @@ public class MyFriendController {
         friend.setRelation(relation);
         LOGGER.info(friend);
         try {
+
+            /**
+             * 人员信息校验，并找出修改的地方
+             */
+            MyFriend friendParam=new MyFriend();
+            friendParam.setQq(qq);
+            friendParam.setName(name);
+            List<MyFriend> friendList=myFriendService.getMyFriendBySql(friendParam);
+            if(CollectionUtils.isEmpty(friendList)){
+                throw new RuntimeException("要修改的人员信息不存在...");
+            }
+            MyFriend myFriend=friendList.get(0);
+            String updateInfo="";
+            if(!com.alibaba.druid.util.StringUtils.equals(birthday,myFriend.getBirthday())){updateInfo+="\"生日\"由：《"+myFriend.getBirthday()+"》被修改为：《"+birthday+"》";}
+            if(!com.alibaba.druid.util.StringUtils.equals(telephone,myFriend.getTelephone())){updateInfo+="\"电话号码\"由：《"+myFriend.getTelephone()+"被修改为：《"+telephone+"》";}
+            if(!com.alibaba.druid.util.StringUtils.equals(hobby,myFriend.getHobby())){updateInfo+="\"兴趣爱好\"由：《"+myFriend.getHobby()+"》被修改为：《"+hobby+"》";}
+            if(!com.alibaba.druid.util.StringUtils.equals(school,myFriend.getSchool())){updateInfo+="\"学校\"由：《"+myFriend.getSchool()+"》被修改为：《"+school+"》";}
+            if(!com.alibaba.druid.util.StringUtils.equals(education_background,myFriend.getEducation_background())){updateInfo+="\"教育背景由：《"+myFriend.getEducation_background()+"》被修改为：《"+education_background+"》";}
+            if(!com.alibaba.druid.util.StringUtils.equals(major,myFriend.getMajor())){updateInfo+="\"专业\"由：《"+myFriend.getMajor()+"》被修改为：《"+major+"》";}
+            if(!com.alibaba.druid.util.StringUtils.equals(company,myFriend.getCompany())){updateInfo+="\"公司\"由：《"+myFriend.getCompany()+"》被修改为：《"+company+"》";}
+            if(!com.alibaba.druid.util.StringUtils.equals(relation,myFriend.getRelation())){updateInfo+="\"与我的关系\"由：《"+myFriend.getRelation()+"》被修改为：《"+relation+"》";}
+
+
+            /*******************************************************************
+             * 日志记录开始
+             */
+            ThreadLocalLog.t1.set("修改名为"+name+",qq为"+qq+"的信息.........."+updateInfo);
+            /**
+             * 日志记录结束
+             ********************************************************************/
+
             result = JSON.toJSONString(myFriendService.updateByPrimaryKey(friend));
         } catch (Exception ex) {
-            LOGGER.info("修改数据异常" + ex.getMessage());
+            LOGGER.error("修改数据异常" + ex.getMessage());
             result+= ex.getMessage();
         }
         return result;

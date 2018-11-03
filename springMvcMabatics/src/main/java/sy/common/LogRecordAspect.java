@@ -6,6 +6,7 @@ import sy.model.LogRecord;
 import sy.model.MyFriend;
 import sy.service.LogRecordService;
 import sy.util.DateUtil;
+import sy.util.ThreadLocalLog;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -58,7 +59,8 @@ public class LogRecordAspect {
                 logRecord.setCreateTime(DateUtil.formatToSysDate(new Date()));
                 logRecord.setOperateName(methodName);
                 logRecord.setOperateObj(myFriend.toString());
-                logRecord.setOperateDes("正在完成："+methodName+"方法");
+
+                logRecord.setOperateDes("正在完成"+ ThreadLocalLog.t1.get()+"方法");
                 recordService.insertLog(logRecord);
                 logger.info("插入日志表成功："+myFriend);
 
