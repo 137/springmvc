@@ -48,6 +48,11 @@
     <div class="panel-heading">
         <h3 class="panel-title">修改friend的数据</h3>
     </div>
+
+    <div style="float: right">
+          这个人的兴趣爱好以及其他信息说明展示：<span id="showHobbyAndInfo" ></span>
+    </div>
+
     <div name="myAlert" id="inputSuccessAlert" class="alert alert-success" style="display: none">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>成功！</strong>修改数据成功。
@@ -120,6 +125,7 @@
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="hobby">
             </div>
+
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label" for="inputSuccess">
@@ -179,7 +185,10 @@
     <button type="submit" class="btn btn-default" style="width: 20%;margin-left:10%;margin-top: 1%"
             onclick="submitFriend()">提交
     </button>
+
+
 </div>
+
 <script type="text/javascript">
     //默认加载数据
     $(function () {
@@ -195,6 +204,9 @@
         $("#address").attr("value", address);
         $("#company").attr("value", company);
         $("#relation").attr("value", relation);
+        $("#showHobbyAndInfo").append(hobby);
+
+
     });
 
     //数据校验

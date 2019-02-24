@@ -44,10 +44,10 @@
                 <li><a href="/echarts-2.2.7/doc/example.html"style="font-size: 16px" target="mainFrame">echarts实例展示标准</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle"style="font-size: 16px"  target="mainFrame" data-toggle="dropdown">
-                         java<b class="caret"></b>
+                         运维管理<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"style="font-size: 16px"target="mainFrame">jmeter</a></li>
+                        <li><a href="/LogRecordController/toShowMyRecordLog.do"style="font-size: 16px"target="mainFrame">日志查询</a></li>
                         <li><a href="#"style="font-size: 16px"target="mainFrame">EJB</a></li>
                         <li><a href="#"style="font-size: 16px"target="mainFrame">Jasper Report</a></li>
                         <li class="divider"></li>
